@@ -1,29 +1,47 @@
-# TodoList
+/**
+ * README for Software Integrators Todo List Project
+ * 
+ * Provides project setup, requirements, and development instructions for an Angular-based todo list application.
+ * 
+ * @description Comprehensive guide for project initialization, running, and building
+ * @requires Angular CLI 19.2.5
+ * @requires Node.js >= 20.9.0
+ * @see https://github.com/angular/angular-cli
+ */
+# Software Integrators - Todo List
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.5.
 
-## Development server
+This project is part of the Software Integrators' hiring process.
 
-To start a local development server, run:
+## Requirements
+
+- Angular 19.2.5
+- Node.js >= 20.9.0
+
+May it's working with other versions, but it's not tested.
+
+## Setup
+Please install the dependencies
+
+```bash
+npm install
+```
+
+## Running the project
+
+### With Mock API
+To start a local development server with a mock API, run:
+
+```bash
+npm run start
+```
+
+### Without Mock API
+Note: It's necessary point an API endpoint at .env file.
 
 ```bash
 ng serve
-```
-
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
 ```
 
 ## Building
@@ -36,24 +54,11 @@ ng build
 
 This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
 
-## Running unit tests
+## Mock API
+A mock API is provided by [json-server](https://github.com/typicode/json-server) and is available at `http://localhost:3333/`.
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+### API Data Base
+👉 [root]/data/db.json
 
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+### For more realistic experience, was added a delay of 2 second to all requests.
+👉 [root]/app/services/api.service.ts

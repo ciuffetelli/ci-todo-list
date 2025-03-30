@@ -1,3 +1,33 @@
 {
-  "tasks": []
+  "tasks": [
+    {
+      "id": "70b7",
+      "summary": "Display unfinished items",
+      "description": "Display all unfinished items with a descending priority order",
+      "priority": 1,
+      "dueDate": "2025-04-01"
+    },
+    {
+      "id": "93cc",
+      "summary": "Highest priority",
+      "description": "Unfinished items with the highest priority and the soonest deadline (1 day) will be highlighted",
+      "priority": "1",
+      "dueDate": "2025-03-30",
+      "completedAt": "2025-03-30T19:59:53.771Z"
+    },
+    {
+      "id": "4766",
+      "summary": "Allow mark item as finished",
+      "description": "Allow users to mark a particular item as finished. That item is blurred, strikethrough, and moved to the bottom of the list immediately",
+      "priority": "3",
+      "dueDate": "2025-04-02"
+    },
+    {
+      "id": "77ee",
+      "summary": "Save Item",
+      "description": "The items should be saved on API and not edited",
+      "priority": "3",
+      "dueDate": "2025-03-02"
+    }
+  ]
 }

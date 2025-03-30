@@ -40,15 +40,15 @@ export class HomeComponent implements OnInit {
         return dtCompletedB - dtCompletedA;
       }
 
-      if(a.dueInDays <= 1 || b.dueInDays <= 1) {
+      if(a.priority === b.priority) {
 
-        const priorityA = a.priority - a.dueInDays;
-        const priorityB = b.priority - b.dueInDays;
+        const priorityA = - a.dueInDays;
+        const priorityB = - b.dueInDays;
 
         return priorityB - priorityA;
       }
 
-      return b.priority - a.priority
+      return b.priority - a.priority;
     });
   }
 

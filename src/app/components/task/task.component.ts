@@ -41,21 +41,23 @@ export class TaskComponent {
   }
 
   get priority() {
+
     const dueDateInDays = this.task().dueInDays;
+    const priority = Number(this.task().priority);
 
     if(this.task().completedAt) {
       return null;
     }
 
-    if(dueDateInDays <= 0) {
+    if(dueDateInDays <= 0 || priority === 3) {
       return 'high';
     }
 
-    if(dueDateInDays === 1) {
+    if(dueDateInDays === 1 || priority === 2) {
       return 'medium';
     }
 
-    if(dueDateInDays > 0 ) {
+    if(dueDateInDays > 0 || priority === 1) {
       return "low";
     }
 

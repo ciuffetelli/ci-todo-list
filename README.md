@@ -1,13 +1,3 @@
-/**
- * README for Software Integrators Todo List Project
- * 
- * Provides project setup, requirements, and development instructions for an Angular-based todo list application.
- * 
- * @description Comprehensive guide for project initialization, running, and building
- * @requires Angular CLI 19.2.5
- * @requires Node.js >= 20.9.0
- * @see https://github.com/angular/angular-cli
- */
 # Software Integrators - Todo List
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.5.

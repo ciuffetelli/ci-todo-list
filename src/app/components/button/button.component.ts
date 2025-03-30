@@ -11,4 +11,5 @@ export class ButtonComponent {
   title = input('');
   variation = input('');
   href = input<string | null>(null);
+  icon = input<string | null>(null);
 }

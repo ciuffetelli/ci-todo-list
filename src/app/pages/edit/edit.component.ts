@@ -7,14 +7,16 @@ import { dateFromToday } from '../../../utils/dateFromToday';
 import { ApiService } from '../../services/api.service';
 import { catchError } from 'rxjs';
 import { LoadingComponent } from "../../components/loading/loading.component";
+import { APITask } from '../../model/task.type';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'app-create',
+  selector: 'app-edit',
   imports: [ButtonComponent, ReactiveFormsModule, FormInputComponent, AlertComponent, LoadingComponent],
-  templateUrl: './create.component.html',
-  styleUrl: './create.component.scss'
+  templateUrl: './edit.component.html',
+  styleUrl: './edit.component.scss'
 })
-export class CreateComponent {
+export class EditComponent {
 
   apiService = inject(ApiService);
 
@@ -25,7 +27,12 @@ export class CreateComponent {
     display: false
   })
 
-  createTaskForm: FormGroup = new FormGroup({
+  task = signal<APITask | null>(null);
+
+  constructor(private route: ActivatedRoute) {}
+
+  editTaskForm: FormGroup = new FormGroup({
+    id: new FormControl('', [Validators.required]),
     summary: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(30)]),
     description: new FormControl('', []),
     priority: new FormControl(1, [Validators.required, Validators.min(1), Validators.max(3)]),
@@ -51,7 +58,7 @@ export class CreateComponent {
       return;
     }
 
-    if(!this.createTaskForm.valid) {
+    if(!this.editTaskForm.valid) {
       this.alert.set({
         message: 'Please check the form for errors',
         variations: 'danger',
@@ -60,10 +67,10 @@ export class CreateComponent {
       return;
     }
 
-    const data = this.createTaskForm.value;
+    const data = this.editTaskForm.value;
 
     this.isLoading.set(true);
-    this.apiService.createTask(data)
+    this.apiService.updateTask(data)
       .pipe(
         catchError(error => {
           this.isLoading.set(false);
@@ -78,12 +85,36 @@ export class CreateComponent {
       .subscribe(task => {
         this.isLoading.set(false);
         this.alert.set({
-          message: 'Task created successfully',
+          message: 'Task was edited successfully',
           variations: 'success',
           display: true
         });
-        this.createTaskForm.reset();
       })
 
+  }
+
+  ngOnInit() {
+
+    const taskId = this.route.snapshot.paramMap.get('id');
+
+    this.isLoading.set(true);
+
+    this.apiService.getTaskById(taskId!)
+      .pipe(
+        catchError(error => {
+          this.isLoading.set(false);
+          this.alert.set({
+            message: error.message,
+            variations: 'danger',
+            display: true
+          });
+          return [];
+        })
+      )
+      .subscribe(task => {
+        this.task.set(task);
+        this.editTaskForm.patchValue(task);
+        this.isLoading.set(false);
+      });
   }
 }

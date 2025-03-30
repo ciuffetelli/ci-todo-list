@@ -1,18 +1,23 @@
 <div class="container">
   <div class="content">
-    <h1 class="title">Create Task</h1>
+    <h1 class="title">Edit Task</h1>
 
     @if (alert().display) {
       <app-alert [message]="alert().message" [variations]="alert().variations" />
+    }
+
+    @if (task()?.completedAt) {
+      <app-alert message="This task has been completed. You cannot edit it." variations="warning" />
     }
 
     @if (isLoading()) {
       <app-loading />
     }
 
-    <div [formGroup]="createTaskForm" class="form">
+    <div [formGroup]="editTaskForm" class="form">
 
       <div class="form-group">
+        <app-form-input type="hidden" label="id" controlName="id" />
         <app-form-input label="summary" controlName="summary" />
         <app-form-input label="description" controlName="description" />
         <app-form-input type="number" label="priority" controlName="priority" />
@@ -21,7 +26,10 @@
 
       <div class="form-footer">
         <app-button title="Cancel" href="/" variation="secondary" />
-        <app-button title="Create" type="submit" variation="primary" (click)="handleSubmit()" />
+        <app-button title="Create Form" href="/create" />
+        @if(task()?.id && !isLoading() && !task()?.completedAt) {
+          <app-button title="Save" type="submit" variation="primary" (click)="handleSubmit()" />
+        }
       </div>
     </div>
   </div>

@@ -1,0 +1,22 @@
+.loading-container {
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+  margin: 1rem auto;
+  border-radius: 0.5rem;
+  font-size: 1.2rem;
+  color: #fff;
+  background-color: #cad8df;
+  text-align: center;
+}
+.loading {
+  display: inline;
+}
+.loading-text {
+  font-size: 1.5rem;
+  margin-right: 1rem;
+  color: #839299;
+}
+.loading-icon {
+  width: 50px;
+}

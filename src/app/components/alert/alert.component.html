@@ -1,0 +1,12 @@
+<div class="alert alert-{{ variations() }}" *ngIf="message()">
+  <span class="icon">
+    @if (variations() === 'danger') {
+      😩
+    } @else if (variations() === 'success') {
+      😎
+    } @else {
+      🤔
+    }
+  </span>
+  {{ message() }}
+</div>

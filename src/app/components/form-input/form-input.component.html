@@ -1,0 +1,22 @@
+<div [ngClass]="{
+  'form-field': true,
+  'form-input-hidden': type() === 'hidden',
+}">
+  <label [for]="controlName()">{{ label() }}</label>
+  <input
+    [id]="controlName()"
+    [formControl]="control"
+    [type]="type()"
+    [ngClass]="{
+      'input': true,
+      'input-error': control && control.invalid,
+      'input-success': control && control.valid
+    }"
+  />
+
+  @if (control && control.invalid && control.touched) {
+    <div class="input-error-message">
+      {{ getErrorMessage() }}
+    </div>
+  }
+</div>

@@ -1,8 +1,31 @@
-<div class="task" title="Daniel">
-  <div class="checkbox completed"></div>
-  <h3>Task</h3>
-  <div class="task-info">
-    25/02/2023
+<div [ngClass]="{
+  'task': true,
+  'completed': task().completedAt,
+  'editable': task().editable,
+  'priority-high': priority === 'high',
+  'priority-medium': priority === 'medium',
+  'priority-low': priority === 'low',
+}" [title]="task().description">
+  <div class="task-header">
+
+    <button type="button" class="checkbox" (click)="toggleTask()"></button>
+
+    <h3 class="task-title">{{task().summary}}</h3>
+
+  </div>
+
+  <div class="task-content">
+
+    @if (!task().completedAt) {
+      <span>{{ dueIn }}</span>
+    }
+
+    @if(!task().completedAt) {
+      <div class="task-actions">
+        <app-button title="✍️" [href]="`/edit/${task().id}`" />
+        <app-button title="🗑️" (click)="handleDelete()"/>
+      </div>
+    }
   </div>
 </div>
 

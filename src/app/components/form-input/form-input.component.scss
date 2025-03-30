@@ -1,0 +1,37 @@
+.form-field {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+
+.form-field label {
+  color: #4e4e4e;
+  font-weight: 300;
+  text-transform: capitalize;
+}
+
+.form-field .input {
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  font-size: 1rem;
+  width: 100%;
+}
+
+.form-field .input-error {
+  border-color: red;
+}
+
+.form-field .input-success {
+  border-color: green;
+}
+
+.form-field .input-error-message {
+  color: red;
+  font-size: 0.8rem;
+  margin-top: 0.5rem;
+}
+
+.form-input-hidden {
+  display: none;
+}

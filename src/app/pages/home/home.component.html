@@ -2,13 +2,20 @@
   <div class="container">
     <h1 class="title">Software Integrators  - Todo</h1>
 
+    <app-alert [message]="error()" variations="danger" />
+
+    <app-button [title]="tasks().length ? 'Create a task' : 'Create my first task'" routerLink="create" />
+
     <div class="tasks">
-      <app-button text="Add Task" routerLink="create" />
-      <app-task />
-      <app-task />
-      <app-task />
-      <app-task />
-      <app-task />
+      @if (isLoading()) {
+        <app-loading />
+      } @else if (!tasks().length) {
+        <small class="no-tasks">No tasks yet.</small>
+      }
+
+      @for (task of sortedTasks; track task.id) {
+        <app-task [task]="task" (toggleCompleted)="toggleCompleted(task)" (deleteTask)="deleteTask(task)" />
+      }
     </div>
   </div>
 </div>
